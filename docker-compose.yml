@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  mysql:
+    container_name: feedme_mysql
+    image: mysql:8.0-oracle
+    volumes:
+      - mysql_data_dev:/mysql
+    environment:
+      MYSQL_DATABASE: dev_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend/:/feedme/
+    
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data_dev: null
