@@ -2,8 +2,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:root@localhost:3306/dev_db"
+import os
+# SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db" #host.doc
+# 
+# ker.internal 외부에서 도커에 접속하기 위한 주소
+if os.getenv('MYSQL_HOST'):
+    SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:root@host.docker.internal:3306/dev_db"
+else:
+    SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:root@localhost:3306/dev_db"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
