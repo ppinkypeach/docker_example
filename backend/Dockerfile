@@ -3,8 +3,8 @@ FROM python:3.10-slim
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-WORKDIR /feedme
-COPY requirements.txt /feedme
+WORKDIR /taegong
+COPY requirements.txt /taegong
 RUN apt-get update \
   # dependencies for building Python packages
   && apt-get install -y build-essential \
@@ -14,5 +14,5 @@ RUN pip install --upgrade pip
 RUN pip install cryptography
 RUN pip install -r requirements.txt 
 
-COPY . /feedme/
+COPY . /taegong/
 EXPOSE 8000

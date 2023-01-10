@@ -2,20 +2,19 @@ version: "3"
 
 services:
   mysql:
-    container_name: feedme_mysql
+    container_name: taegong_mysql
     image: mysql:8.0-oracle
     volumes:
       - mysql_data_dev:/mysql
-    environment:
-      MYSQL_DATABASE: dev_db
-      MYSQL_ROOT_PASSWORD: root
+    env_file:
+      - ./.env
     networks:
       - mynet
     ports:
       - 3306:3306
 
   backend:
-    container_name: feedme_backend
+    container_name: taegong_backend
     build: ./backend
     environment:
       MYSQL_HOST: "1234"

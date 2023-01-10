@@ -16,7 +16,7 @@ origins = [
     "http://localhost:3000",
     "http://localhost:8080",
 ]
-app = FastAPI(title="feed me",docs_url="/swagger")
+app = FastAPI(title="TaeGong’s life",docs_url="/swagger")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
